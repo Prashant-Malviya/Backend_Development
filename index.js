@@ -7,6 +7,13 @@ mongoose
   .then(() => console.log("Db Connected"))
   .catch((e) => console.log(e));
 
+const messageSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+});
+
+const Message = mongoose.model("Message", messageSchema);
+
 const app = express();
 
 const users = [];
@@ -40,16 +47,19 @@ app.get("/success", (req, res) => {
   res.render("success.ejs");
 });
 
-app.get("/add", (req, res) => {
-  res.send("Nice");
-});
+// app.get("/add", async (req, res) => {
 
-app.post("/contact", (req, res) => {
-  console.log(req.body);
+//   await Message.create({name:"Prashant Malviya",email:"p@gmail.com"})
 
-  users.push({ username: req.body.name, email: req.body.email });
+//     res.send("Nice");
+// }); // this is dummy data store example
 
-  res.render("success.ejs");
+app.post("/contact", async (req, res) => {
+  const { name, email } = req.body;
+
+  await Message.create({ name, email });
+
+  res.redirect("/success");
   console.log(users);
 });
 

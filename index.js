@@ -3,6 +3,8 @@ import path from 'path'
 
 const app = express();
 
+const users = [];
+
 // app.get("/",(req,res)=>{
 //     // res.send("hi");
 //     // res.sendStatus(500);
@@ -17,9 +19,9 @@ const app = express();
 
 //     res.render()
 // })
-
+// using middleware
      app.use(express.static(path.join(path.resolve(),"public")));
-     console.log();
+     app.use(express.urlencoded({extended:true}));
 
 
 app.get("/", (req,res) => {
@@ -29,6 +31,27 @@ app.get("/", (req,res) => {
     // res.sendFile('index')
 })
 
+app.get("/success", (req,res) =>{
+    res.render("success.ejs")
+})
+
+app.post("/contact",(req,res)=>{
+    console.log(req.body);
+
+    users.push({username:req.body.name,email:req.body.email})
+
+    res.render("success.ejs")
+    console.log(users);
+})
+
+
+app.get("/users", (req,res)=>{
+    res.json({
+        users,
+    });
+});
+
 app.listen(5000, ()=>{
     console.log('server is working');
 })
+

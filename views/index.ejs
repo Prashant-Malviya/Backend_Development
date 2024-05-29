@@ -8,9 +8,20 @@
   </head>
   <body>
     <!-- <h1>Hi everyone! <%= name %> here, and my dob date is <%= 20+7 %>.</h1> -->
-    <h1>
+    <!-- <h1>
       Hi everyone! <%= locals.name %> here, and my dob date is <%= 20+7 %>.
-    </h1>
+    </h1> -->
+
+    <main>
+      <h1>Contact Now</h1>
+      <form method="post" action="/contact">
+        <div class="container">
+          <input type="text" name="name" placeholder="Name" />
+          <input type="email" name="email" placeholder="email" />
+          <button type="submit">Send Message</button>
+        </div>
+      </form>
+    </main>
   </body>
   <script src="index.js"></script>
 </html>

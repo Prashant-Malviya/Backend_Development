@@ -32,7 +32,7 @@
   input {
     padding: 1rem;
     outline: none;
-    border: 1px solid beige;
+    border: 1px solid rgb(154, 154, 153);
     border-radius: 5px;
   }
   button {
@@ -44,7 +44,9 @@
     font: 400 1rem sans-serif;
     border: none;
     cursor: pointer;
+    position: relative;
     padding: 1rem 2rem;
+    margin-top: 1rem;
   }
   
   .error {
